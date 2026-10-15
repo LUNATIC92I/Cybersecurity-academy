@@ -1,0 +1,6 @@
+risk_id,asset,threat,vulnerability,likelihood,impact,inherent_score,treatment,residual_score,owner
+R-001,Customer database,Criminal data theft,No encryption at rest,4,5,20,Encrypt at rest + DLP,6,CISO
+R-002,Email accounts,Phishing / BEC,No MFA on webmail,4,4,16,Enforce MFA + awareness,4,IT Manager
+R-003,Internet firewall,Exploitation of CVE,Delayed patching,3,5,15,Emergency patch SLA,5,Network Lead
+R-004,Backup system,Ransomware,Backups reachable from prod,3,5,15,Immutable offline backups,4,Infra Lead
+R-005,Payroll process,Insider fraud,No separation of duties,2,4,8,Dual approval,2,Finance Lead

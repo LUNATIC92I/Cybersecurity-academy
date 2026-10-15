@@ -1,0 +1,65 @@
+<?php
+
+return [
+    'slug' => 'soc-kql-brute-force-rule',
+    'path' => 'SOC',
+    'course' => 'soc-analyst-professional',
+    'module' => 'kql-detection-engineering',
+    'type' => 'simulation',
+    'difficulty' => 'advanced',
+    'duration' => 40,
+    'pass' => 70,
+    'required' => false,
+    'risk' => 'standard',
+
+    'en' => [
+        'title' => 'SOC Lab: Write a Brute-Force Detection in KQL',
+        'summary' => 'Write KQL that detects failed logons followed by a success from the same source. Your query is checked for the right structure; it is never executed.',
+        'objectives' => ['Write a KQL detection with summarize, bin and join', 'Threshold on failure counts', 'Join failures to later successes on IP and account'],
+        'tools' => ['A text editor for your query', 'Optionally the Microsoft demo Log Analytics workspace to test it'],
+        'prerequisites' => ['KQL Fundamentals for Security Analysts', 'Detecting Brute-Force and Password-Spraying Attacks'],
+        'scenario' => "Turn the investigation from the brute-force lab into a reusable detection. Write KQL against the `SecurityEvent` table that flags, within the last hour, any source IP and account with many 4625 failures followed by a 4624 success from the same source and account.",
+        'setup' => "Write your queries in the answer boxes. They are checked for required operators and logic using pattern matching; they are not run, so you do not need a live workspace (though testing in the Microsoft demo workspace is encouraged).",
+        'instructions' => "1. In task 1, write a query that counts 4625 failures per source IP in 10-minute windows and keeps only windows above a threshold.\n2. In task 2, write a query that joins failures to later successes from the same source and account.\n3. Answer the concept question.",
+        'expected_results' => 'Two KQL queries using the expected operators, plus the correct identification of the key detection logic.',
+        'scoring' => 'Structure is checked server-side with pattern matching. Use the operators named in the hints.',
+        'solution' => "Task 1:\n```kusto\nSecurityEvent\n| where TimeGenerated > ago(1h) and EventID == 4625\n| summarize Failures = count() by IpAddress, bin(TimeGenerated, 10m)\n| where Failures >= 20\n```\nTask 2 joins failures to later successes (see the brute-force lesson, Detection 3), using `summarize` on failures, `join kind=inner` on IpAddress and account, and a time condition `SuccessTime > LastFailure`.",
+        'cleanup' => 'No cleanup required.',
+        'lessons_learned' => 'A detection is query plus thresholds plus validation. The "failures then success" join is the highest-value identity analytic; schedule it to run every few minutes with an overlapping look-back to absorb ingestion delay.',
+    ],
+    'fr' => [
+        'title' => 'Lab SOC : écrire une détection de force brute en KQL',
+        'summary' => 'Écrivez du KQL qui détecte des échecs de connexion suivis d\'un succès depuis la même source. Votre requête est vérifiée quant à sa structure ; elle n\'est jamais exécutée.',
+        'objectives' => ['Écrire une détection KQL avec summarize, bin et join', 'Appliquer un seuil sur le nombre d\'échecs', 'Joindre les échecs aux succès ultérieurs par IP et compte'],
+        'tools' => ['Un éditeur de texte pour votre requête', 'Au besoin, l\'espace de démonstration Log Analytics de Microsoft pour la tester'],
+        'prerequisites' => ['Fondamentaux de KQL pour les analystes sécurité', 'Détecter la force brute et la pulvérisation de mots de passe'],
+        'scenario' => "Transformez l'investigation du lab de force brute en détection réutilisable. Écrivez du KQL sur la table `SecurityEvent` qui signale, au cours de la dernière heure, toute IP source et compte présentant de nombreux échecs 4625 suivis d'un succès 4624 depuis la même source et le même compte.",
+        'setup' => "Rédigez vos requêtes dans les champs de réponse. Elles sont vérifiées quant aux opérateurs et à la logique requis par correspondance de motifs ; elles ne sont pas exécutées, vous n'avez donc pas besoin d'un espace actif (tester dans l'espace de démonstration Microsoft est toutefois encouragé).",
+        'instructions' => "1. Dans la tâche 1, écrivez une requête qui compte les échecs 4625 par IP source dans des fenêtres de 10 minutes et ne garde que les fenêtres au-dessus d'un seuil.\n2. Dans la tâche 2, écrivez une requête qui joint les échecs aux succès ultérieurs de la même source et du même compte.\n3. Répondez à la question de concept.",
+        'expected_results' => 'Deux requêtes KQL utilisant les opérateurs attendus, plus l\'identification correcte de la logique clé de détection.',
+        'scoring' => 'La structure est vérifiée côté serveur par correspondance de motifs. Utilisez les opérateurs nommés dans les indices.',
+        'solution' => "Tâche 1 :\n```kusto\nSecurityEvent\n| where TimeGenerated > ago(1h) and EventID == 4625\n| summarize Failures = count() by IpAddress, bin(TimeGenerated, 10m)\n| where Failures >= 20\n```\nLa tâche 2 joint les échecs aux succès ultérieurs (voir la leçon de force brute, détection 3), avec `summarize` sur les échecs, `join kind=inner` sur IpAddress et le compte, et une condition temporelle `SuccessTime > LastFailure`.",
+        'cleanup' => 'Aucun nettoyage requis.',
+        'lessons_learned' => 'Une détection, c\'est une requête, des seuils et une validation. La jointure « échecs puis succès » est l\'analytique d\'identité la plus précieuse ; planifiez-la toutes les quelques minutes avec une période d\'analyse qui se chevauche pour absorber le délai d\'ingestion.',
+    ],
+
+    'tasks' => [
+        [
+            'type' => 'query', 'points' => 40,
+            'spec' => ['required' => ['/SecurityEvent/i', '/where/i', '/EventID\s*==\s*4625/i', '/summarize/i', '/bin\s*\(/i']],
+            'en' => ['prompt' => 'Write a KQL query that counts 4625 failures per source IP in 10-minute windows and keeps windows above a threshold.', 'hint' => 'Start from SecurityEvent; use where EventID == 4625, summarize count() by IpAddress, bin(TimeGenerated, 10m), then where.'],
+            'fr' => ['prompt' => 'Écrivez une requête KQL qui compte les échecs 4625 par IP source dans des fenêtres de 10 minutes et ne garde que les fenêtres au-dessus d\'un seuil.', 'hint' => 'Partez de SecurityEvent ; utilisez where EventID == 4625, summarize count() by IpAddress, bin(TimeGenerated, 10m), puis where.'],
+        ],
+        [
+            'type' => 'query', 'points' => 40,
+            'spec' => ['required' => ['/4625/', '/4624/', '/join/i', '/summarize/i']],
+            'en' => ['prompt' => 'Write a KQL query that joins failures (4625) to later successes (4624) from the same source and account.', 'hint' => 'Build a failures set and a successes set, then join kind=inner on IpAddress and the account.'],
+            'fr' => ['prompt' => 'Écrivez une requête KQL qui joint les échecs (4625) aux succès ultérieurs (4624) de la même source et du même compte.', 'hint' => 'Construisez un ensemble d\'échecs et un ensemble de succès, puis join kind=inner sur IpAddress et le compte.'],
+        ],
+        [
+            'type' => 'choice', 'points' => 20, 'spec' => ['correct' => 'b'],
+            'en' => ['prompt' => 'Why must the join include a time condition such as SuccessTime > LastFailure?', 'options' => ['a' => 'To make the query run faster', 'b' => 'To ensure the success follows the failures, removing coincidental matches', 'c' => 'To exclude machine accounts', 'd' => 'To convert dynamic columns to strings'], 'explanation' => 'Without ordering, a user who failed in the morning and logged in normally in the afternoon would match. The time condition ensures the success is a consequence of the failures.'],
+            'fr' => ['prompt' => 'Pourquoi la jointure doit-elle inclure une condition temporelle comme SuccessTime > LastFailure ?', 'options' => ['a' => 'Pour accélérer la requête', 'b' => 'Pour garantir que le succès suit les échecs, en éliminant les correspondances fortuites', 'c' => 'Pour exclure les comptes machine', 'd' => 'Pour convertir les colonnes dynamiques en chaînes'], 'explanation' => 'Sans ordre, un utilisateur qui a échoué le matin puis s\'est connecté normalement l\'après-midi correspondrait. La condition temporelle garantit que le succès est une conséquence des échecs.'],
+        ],
+    ],
+];
