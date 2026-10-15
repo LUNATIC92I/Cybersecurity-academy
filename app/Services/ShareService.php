@@ -81,8 +81,8 @@ final class ShareService
             imagettftext($img, 26, 0, 80, 110, $cyan, $bold, 'CYBERSECURITY-ACADEMY');
             imagettftext($img, 24, 0, 80, 190, $muted, $regular, self::fit($headline, 60));
             $y = 270;
-            foreach (self::wrap($title, 30, 2) as $lineText) {
-                imagettftext($img, 48, 0, 80, $y, $white, $bold, $lineText);
+            foreach (self::wrapMeasured($title, $bold, 46, 1000, 2) as $lineText) {
+                imagettftext($img, 46, 0, 80, $y, $white, $bold, $lineText);
                 $y += 66;
             }
             imagettftext($img, 30, 0, 80, $y + 30, $white, $regular, self::fit($holder, 40));
@@ -102,6 +102,41 @@ final class ShareService
     private static function fit(string $text, int $max): string
     {
         return mb_strlen($text) > $max ? mb_substr($text, 0, $max - 1) . '…' : $text;
+    }
+
+    /**
+     * Wrap text to a pixel width using the font's real glyph metrics.
+     */
+    private static function wrapMeasured(string $text, string $font, int $size, int $maxWidth, int $maxLines): array
+    {
+        $words = preg_split('/\s+/', trim($text)) ?: [];
+        $lines = [];
+        $current = '';
+        $width = static function (string $s) use ($font, $size): int {
+            $box = imagettfbbox($size, 0, $font, $s);
+            return $box ? abs($box[2] - $box[0]) : 0;
+        };
+        foreach ($words as $word) {
+            $candidate = $current === '' ? $word : $current . ' ' . $word;
+            if ($current !== '' && $width($candidate) > $maxWidth) {
+                $lines[] = $current;
+                $current = $word;
+            } else {
+                $current = $candidate;
+            }
+        }
+        if ($current !== '') {
+            $lines[] = $current;
+        }
+        if (count($lines) > $maxLines) {
+            $lines = array_slice($lines, 0, $maxLines);
+            $last = $lines[$maxLines - 1];
+            while ($last !== '' && $width($last . '…') > $maxWidth) {
+                $last = mb_substr($last, 0, -1);
+            }
+            $lines[$maxLines - 1] = rtrim($last) . '…';
+        }
+        return $lines;
     }
 
     private static function wrap(string $text, int $width, int $maxLines): array
