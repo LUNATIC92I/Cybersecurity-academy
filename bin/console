@@ -1,0 +1,121 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use App\Core\App;
+use Database\Migrator;
+use Database\Seeders\DatabaseSeeder;
+
+if (PHP_SAPI !== 'cli') {
+    exit(1);
+}
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+$app = new App(dirname(__DIR__));
+$command = $argv[1] ?? 'help';
+$args = array_slice($argv, 2);
+$out = static fn (string $line) => fwrite(STDOUT, $line . PHP_EOL);
+$option = static function (string $name) use ($args): ?string {
+    foreach ($args as $arg) {
+        if (str_starts_with($arg, "--$name=")) {
+            return substr($arg, strlen($name) + 3);
+        }
+    }
+    return null;
+};
+
+$migrator = new Migrator(db(), base_path('database/migrations'));
+
+switch ($command) {
+    case 'migrate':
+        $ran = $migrator->migrate($out);
+        $out($ran ? 'Done.' : 'Nothing to migrate.');
+        break;
+
+    case 'migrate:fresh':
+        if (config('app.env') === 'production' && !in_array('--force', $args, true)) {
+            $out('Refusing to drop tables in production without --force.');
+            exit(1);
+        }
+        $migrator->dropAll();
+        $migrator->migrate($out);
+        if (in_array('--seed', $args, true)) {
+            (new DatabaseSeeder($out))->run(in_array('--demo', $args, true));
+        }
+        break;
+
+    case 'seed':
+        (new DatabaseSeeder($out))->run(in_array('--demo', $args, true));
+        break;
+
+    case 'schema:dump':
+        $migrator->dump(base_path('database.sql'));
+        $out('Wrote database.sql');
+        break;
+
+    case 'make:admin':
+        $email = $option('email');
+        $name = $option('name') ?? 'Platform Administrator';
+        if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $out('Usage: php bin/console make:admin --email=admin@example.org [--name="Display Name"]');
+            exit(1);
+        }
+        fwrite(STDOUT, 'Password (min 12 chars, upper, lower, digit): ');
+        if (DIRECTORY_SEPARATOR === '/' && posix_isatty(STDIN)) {
+            shell_exec('stty -echo');
+            $password = trim((string) fgets(STDIN));
+            shell_exec('stty echo');
+            fwrite(STDOUT, PHP_EOL);
+        } else {
+            $password = trim((string) fgets(STDIN));
+        }
+        try {
+            $id = \App\Services\UserService::createAdministrator($email, $name, $password);
+            $out("Super administrator created (user #$id).");
+        } catch (\Throwable $e) {
+            $out('Error: ' . $e->getMessage());
+            exit(1);
+        }
+        break;
+
+    case 'key:generate':
+        $out('APP_KEY=base64:' . base64_encode(random_bytes(32)));
+        $out('Copy this line into your .env file.');
+        break;
+
+    case 'maintenance:run':
+        // Run hourly from cron: expired tokens, stale rate limits, expired
+        // subscriptions/attempts and accounts past the deletion grace period.
+        $report = \App\Services\MaintenanceService::run();
+        foreach ($report as $task => $count) {
+            $out(sprintf('%-28s %d', $task, $count));
+        }
+        break;
+
+    case 'translations:check':
+        $en = require base_path('lang/en.php');
+        $fr = require base_path('lang/fr.php');
+        $missing = array_diff_key($en, $fr);
+        $out(count($missing) . ' interface keys missing in French.');
+        foreach (array_keys($missing) as $key) {
+            $out("  - $key");
+        }
+        $rows = db()->fetchAll(
+            "SELECT 'lesson' AS type, lesson_id AS id, translation_status FROM lesson_translations WHERE locale = 'fr' AND translation_status <> 'published'"
+        );
+        $out(count($rows) . ' lesson translations in French are not published.');
+        exit($missing ? 1 : 0);
+
+    default:
+        $out('Cybersecurity-Academy console');
+        $out('  migrate                 Apply pending migrations');
+        $out('  migrate:fresh [--seed] [--demo]  Drop all tables and re-run migrations (dev only)');
+        $out('  seed [--demo]           Seed reference data and curriculum (and demo accounts)');
+        $out('  schema:dump             Regenerate database.sql from migrations');
+        $out('  make:admin --email=     Create a super administrator (prompts for password)');
+        $out('  key:generate            Print a new APP_KEY');
+        $out('  maintenance:run         Housekeeping task for cron');
+        $out('  translations:check      Report missing French translations');
+}

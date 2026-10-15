@@ -1,0 +1,16 @@
+/vendor/
+.env
+.env.testing
+.phpunit.result.cache
+.phpunit.cache/
+/storage/logs/*
+/storage/cache/*
+/storage/sessions/*
+/storage/uploads/*
+/storage/certificates/*
+!/storage/**/.gitkeep
+/public/uploads/*
+!/public/uploads/.gitkeep
+.DS_Store
+.idea/
+.vscode/
