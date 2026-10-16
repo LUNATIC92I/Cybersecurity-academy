@@ -30,7 +30,10 @@ final class Env
                 || (str_starts_with($value, "'") && str_ends_with($value, "'"))) {
                 $value = substr($value, 1, -1);
             }
-            if (getenv($key) === false && !array_key_exists($key, $_ENV)) {
+            // First definition wins, so an earlier-loaded file (e.g. .env.testing)
+            // takes precedence over a later one (.env), and real environment
+            // variables override both.
+            if (getenv($key) === false && !array_key_exists($key, $_ENV) && !array_key_exists($key, self::$values)) {
                 self::$values[$key] = $value;
             }
         }

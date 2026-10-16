@@ -36,9 +36,11 @@ final class Router
             $middleware = array_merge($middleware, (array) ($group['middleware'] ?? []));
         }
         $full = '/' . trim($prefix . '/' . trim($path, '/'), '/');
+        // The constraint may itself contain {n} or {n,m} quantifiers, so the
+        // constraint sub-pattern allows balanced {digits[,digits]} groups.
         $regex = '#^' . preg_replace_callback(
-            '/\{([a-zA-Z_]+)(?::([^}]+))?\}/',
-            fn ($m) => '(?P<' . $m[1] . '>' . ($m[2] ?? '[^/]+') . ')',
+            '/\{([a-zA-Z_]+)(?::((?:[^{}]|\{\d+(?:,\d*)?\})+))?\}/',
+            fn ($m) => '(?P<' . $m[1] . '>' . (($m[2] ?? '') !== '' ? $m[2] : '[^/]+') . ')',
             $full
         ) . '$#u';
 
@@ -83,7 +85,7 @@ final class Router
             throw new \InvalidArgumentException("Unknown route [$name].");
         }
         $path = preg_replace_callback(
-            '/\{([a-zA-Z_]+)(?::[^}]+)?\}/',
+            '/\{([a-zA-Z_]+)(?::(?:[^{}]|\{\d+(?:,\d*)?\})+)?\}/',
             function ($m) use (&$params, $name) {
                 if (!array_key_exists($m[1], $params)) {
                     throw new \InvalidArgumentException("Missing parameter [{$m[1]}] for route [$name].");

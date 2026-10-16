@@ -160,6 +160,27 @@ final class Database
     }
 
     /**
+     * Test support: open an outer transaction and account for it in the
+     * nesting counter, so service-layer transaction() calls nest cleanly and
+     * the whole test can be rolled back afterwards.
+     */
+    public function beginTestTransaction(): void
+    {
+        if (!$this->pdo()->inTransaction()) {
+            $this->pdo()->beginTransaction();
+        }
+        $this->transactionLevel = 1;
+    }
+
+    public function rollBackTestTransaction(): void
+    {
+        if ($this->pdo()->inTransaction()) {
+            $this->pdo()->rollBack();
+        }
+        $this->transactionLevel = 0;
+    }
+
+    /**
      * Build a "?, ?, ?" placeholder list for IN() clauses.
      */
     public static function placeholders(array $values): string

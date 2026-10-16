@@ -38,7 +38,9 @@
     "scripts": {
         "test": "phpunit",
         "migrate": "php bin/console migrate",
-        "seed": "php bin/console seed"
+        "seed": "php bin/console seed",
+        "test:unit": "phpunit --testsuite unit",
+        "lint": "@php -l app/Core/App.php"
     },
     "config": {
         "sort-packages": true,

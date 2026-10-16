@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: cyberacademy_test
+        ports: [ '3306:3306' ]
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, mbstring, gd, intl, fileinfo, openssl
+          coverage: none
+      - name: Create test DB user
+        run: |
+          mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'academy'@'%' IDENTIFIED BY 'devpass'; GRANT ALL ON cyberacademy_test.* TO 'academy'@'%'; FLUSH PRIVILEGES;"
+      - name: Write test env
+        run: |
+          printf 'APP_ENV=testing\nAPP_DEBUG=true\nAPP_URL=http://localhost\nAPP_KEY=base64:%s\nDB_HOST=127.0.0.1\nDB_PORT=3306\nDB_DATABASE=cyberacademy_test\nDB_USERNAME=academy\nDB_PASSWORD=devpass\nMAIL_DRIVER=array\n' "$(openssl rand -base64 32)" > .env.testing
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+      - name: Lint PHP
+        run: find app database routes public tests -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null
+      - name: Run test suite
+        run: php vendor/bin/phpunit
+      - name: Check translation completeness
+        run: php bin/console translations:check
