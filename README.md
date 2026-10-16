@@ -132,19 +132,31 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the design rationale.
 
 ## Content status
 
-The curriculum is published progressively and honestly:
+The curriculum is published progressively and honestly. Every published lesson
+is fully bilingual (English and French), with objectives, worked examples,
+scenarios, a knowledge check, an exercise with a model answer, an assignment and
+references. At the time of writing, **20 lessons** are published:
 
-- **Lessons** are published for the SOC path (foundations, networking, Windows
-  logs, KQL, brute-force detection, incident response) and the Pentest ethics
-  module. Other modules are listed in the syllabus as **in development** until
-  their lessons are written, reviewed and published — the platform never
-  pretends a module is complete when it is not.
+- **GRC path — complete.** All 10 modules are published: GRC fundamentals, risk
+  management, ISO/IEC 27001, the NIST Cybersecurity Framework 2.0, security
+  controls and auditing, privacy and data protection, business continuity,
+  third-party risk, GRC tools and documentation, and a capstone project. Each
+  module has a module quiz, and the final exam draws across every module.
+- **SOC path — in progress.** 9 lessons across 5 modules: cybersecurity
+  foundations, networking, operating-system logs (Windows and Linux), KQL and
+  detection engineering, and incident response (lifecycle plus alert triage).
+  Every covered module has a module quiz. The remaining modules are listed in
+  the syllabus as **in development**.
+- **Penetration Testing path — foundations only.** The ethics, authorisation and
+  rules-of-engagement lesson is published; later modules are **in development**.
 - **Labs**: five server-scored labs across SOC, GRC and Pentest.
-- **Assessments**: 54 bilingual questions with module quizzes and a final exam
-  per course.
+- **Assessments**: ~105 bilingual questions feeding 14 module quizzes and a
+  final exam for each of the three paths (random draw, server-side scoring).
 
-New courses, lessons, labs and questions are added through the admin area or as
-versioned content files under `database/content/`, then seeded.
+Modules not yet written are shown as **in development** in the syllabus — the
+platform never pretends a module is complete when it is not. New courses,
+lessons, labs and questions are added through the admin area or as versioned
+content files under `database/content/`, then seeded.
 
 ## What is *not* configured out of the box
 
