@@ -447,9 +447,9 @@ return [
          'en' => ['title' => 'Module quiz: GRC Tools and Documentation', 'description' => 'Five questions on the source of truth, registers, control matrix, decision forms and dashboards.'],
          'fr' => ['title' => 'Quiz du module : Outils et documentation GRC', 'description' => 'Cinq questions sur la source de vérité, les registres, la matrice de contrôles, les formulaires de décision et les tableaux de bord.']],
         ['slug' => 'grc-professional-final-exam', 'kind' => 'final_exam',
-         'count' => 12, 'duration' => 30, 'pass' => 70, 'max_attempts' => 5, 'cooldown' => 60, 'explanations' => 'after_pass',
-         'banks' => ['grc-governance' => 3, 'grc-core' => 3, 'grc-frameworks' => 2, 'grc-csf' => 2, 'grc-controls' => 2],
-         'en' => ['title' => 'GRC Professional — Final Exam', 'description' => 'Twelve questions drawn at random across governance, risk management, ISO/IEC 27001, the NIST CSF and controls & auditing. Pass with 70% to earn your certificate.'],
-         'fr' => ['title' => 'Professionnel GRC — Examen final', 'description' => 'Douze questions tirées au hasard sur la gouvernance, la gestion des risques, l\'ISO/IEC 27001, le NIST CSF et les mesures et audit. Réussissez avec 70 % pour obtenir votre certificat.']],
+         'count' => 18, 'duration' => 45, 'pass' => 70, 'max_attempts' => 5, 'cooldown' => 60, 'explanations' => 'after_pass',
+         'banks' => ['grc-governance' => 2, 'grc-core' => 2, 'grc-frameworks' => 2, 'grc-csf' => 2, 'grc-controls' => 2, 'grc-privacy' => 2, 'grc-continuity' => 2, 'grc-third-party' => 2, 'grc-documentation' => 2],
+         'en' => ['title' => 'GRC Professional — Final Exam', 'description' => 'Eighteen questions drawn at random across every module — governance, risk management, ISO/IEC 27001, the NIST CSF, controls & auditing, privacy, business continuity, third-party risk and GRC documentation. Pass with 70% to earn your certificate.'],
+         'fr' => ['title' => 'Professionnel GRC — Examen final', 'description' => 'Dix-huit questions tirées au hasard sur tous les modules — gouvernance, gestion des risques, ISO/IEC 27001, NIST CSF, mesures et audit, vie privée, continuité d\'activité, risques tiers et documentation GRC. Réussissez avec 70 % pour obtenir votre certificat.']],
     ],
 ];
