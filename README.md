@@ -135,22 +135,29 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the design rationale.
 The curriculum is published progressively and honestly. Every published lesson
 is fully bilingual (English and French), with objectives, worked examples,
 scenarios, a knowledge check, an exercise with a model answer, an assignment and
-references. At the time of writing, **20 lessons** are published:
+references. At the time of writing, **31 lessons** are published:
 
+- **SOC Analysis path — complete.** All 10 modules are published: cybersecurity
+  foundations, networking (incl. DNS/HTTP/proxy log analysis), operating-system
+  logs (Windows and Linux), SIEM operations, KQL and detection engineering,
+  incident response (lifecycle and alert triage), threat intelligence and
+  hunting, identity and cloud monitoring, malware and endpoint investigation,
+  and advanced SOC operations. Every module has a module quiz, and the final
+  exam draws across every module.
 - **GRC path — complete.** All 10 modules are published: GRC fundamentals, risk
   management, ISO/IEC 27001, the NIST Cybersecurity Framework 2.0, security
   controls and auditing, privacy and data protection, business continuity,
   third-party risk, GRC tools and documentation, and a capstone project. Each
   module has a module quiz, and the final exam draws across every module.
-- **SOC path — in progress.** 9 lessons across 5 modules: cybersecurity
-  foundations, networking, operating-system logs (Windows and Linux), KQL and
-  detection engineering, and incident response (lifecycle plus alert triage).
-  Every covered module has a module quiz. The remaining modules are listed in
-  the syllabus as **in development**.
-- **Penetration Testing path — foundations only.** The ethics, authorisation and
-  rules-of-engagement lesson is published; later modules are **in development**.
+- **Penetration Testing path — in progress.** 6 of 10 modules published, in a
+  conceptual, defensive framing: ethics/authorisation and rules of engagement,
+  Linux and technical foundations, passive reconnaissance and OSINT,
+  vulnerability assessment and CVSS, web application security, and reporting and
+  remediation. The remaining modules (network enumeration, exploitation,
+  Active Directory assessment, privilege escalation) are **in development**;
+  hands-on offensive techniques are taught only for authorised, isolated use.
 - **Labs**: five server-scored labs across SOC, GRC and Pentest.
-- **Assessments**: ~105 bilingual questions feeding 14 module quizzes and a
+- **Assessments**: ~165 bilingual questions feeding 24 module quizzes and a
   final exam for each of the three paths (random draw, server-side scoring).
 
 Modules not yet written are shown as **in development** in the syllabus — the
