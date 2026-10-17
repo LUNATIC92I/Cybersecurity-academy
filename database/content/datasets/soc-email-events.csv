@@ -1,0 +1,9 @@
+msg_id,sender,display_name,spf,dkim,dmarc,reply_to,url_domain,attachment
+M-01,newsletter@marketing.example.com,Example Marketing,pass,pass,pass,newsletter@marketing.example.com,example.com,none
+M-02,no-reply@github.com,GitHub,pass,pass,pass,no-reply@github.com,github.com,none
+M-03,it-support@examp1e-helpdesk.com,IT Helpdesk,fail,none,fail,credentials@mail.ru,examp1e-login.com,none
+M-04,hr@example.com,HR Team,pass,pass,pass,hr@example.com,example.com,benefits.pdf
+M-05,billing@vendor-portal.com,Vendor Portal,pass,pass,pass,billing@vendor-portal.com,vendor-portal.com,invoice.pdf
+M-06,alerts@bank-example.com,Bank Example,pass,pass,pass,alerts@bank-example.com,bank-example.com,none
+M-07,ceo@example.com,Chief Executive,pass,pass,pass,ceo.urgent@gmail.com,none,none
+M-08,updates@linkedin.com,LinkedIn,pass,pass,pass,updates@linkedin.com,linkedin.com,none
