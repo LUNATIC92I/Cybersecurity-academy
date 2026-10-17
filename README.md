@@ -135,7 +135,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the design rationale.
 The curriculum is published progressively and honestly. Every published lesson
 is fully bilingual (English and French), with objectives, worked examples,
 scenarios, a knowledge check, an exercise with a model answer, an assignment and
-references. At the time of writing, **31 lessons** are published:
+references. At the time of writing, **32 lessons** are published:
 
 - **SOC Analysis path — complete.** All 10 modules are published: cybersecurity
   foundations, networking (incl. DNS/HTTP/proxy log analysis), operating-system
@@ -149,15 +149,16 @@ references. At the time of writing, **31 lessons** are published:
   controls and auditing, privacy and data protection, business continuity,
   third-party risk, GRC tools and documentation, and a capstone project. Each
   module has a module quiz, and the final exam draws across every module.
-- **Penetration Testing path — in progress.** 6 of 10 modules published, in a
+- **Penetration Testing path — in progress.** 7 of 10 modules published, in a
   conceptual, defensive framing: ethics/authorisation and rules of engagement,
   Linux and technical foundations, passive reconnaissance and OSINT,
-  vulnerability assessment and CVSS, web application security, and reporting and
-  remediation. The remaining modules (network enumeration, exploitation,
-  Active Directory assessment, privilege escalation) are **in development**;
-  hands-on offensive techniques are taught only for authorised, isolated use.
+  vulnerability assessment and CVSS, web application security, reporting and
+  remediation, and Active Directory security and attack paths. The remaining
+  modules (network enumeration, exploitation, privilege escalation) are
+  **in development**; hands-on offensive techniques are taught only for
+  authorised, isolated use.
 - **Labs**: five server-scored labs across SOC, GRC and Pentest.
-- **Assessments**: ~165 bilingual questions feeding 24 module quizzes and a
+- **Assessments**: ~171 bilingual questions feeding 25 module quizzes and a
   final exam for each of the three paths (random draw, server-side scoring).
 
 Modules not yet written are shown as **in development** in the syllabus — the
