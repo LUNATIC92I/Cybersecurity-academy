@@ -61,6 +61,7 @@ Les adresses IPv6 comptent 128 bits, écrits en groupes hexadécimaux (`2001:db8
 
 **TCP** est orienté connexion et fiable. Il établit une session par la **poignée de main en trois temps** :
 
+:::diagram Connexion TCP : la poignée de main à trois temps, les données et la fermeture
 ```text
 Client 10.0.5.20:51544                      Serveur 203.0.113.10:443
         │ ── SYN (seq=x) ───────────────────────► │
@@ -71,6 +72,7 @@ Client 10.0.5.20:51544                      Serveur 203.0.113.10:443
         │ ◄──────────────────────────────── FIN/ACK │
         │ ── ACK ─────────────────────────────────► │
 ```
+:::
 
 Drapeaux TCP à reconnaître :
 
