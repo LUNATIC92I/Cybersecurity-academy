@@ -157,10 +157,10 @@ references. At the time of writing, **32 lessons** are published:
   modules (network enumeration, exploitation, privilege escalation) are
   **in development**; hands-on offensive techniques are taught only for
   authorised, isolated use.
-- **Labs**: seven server-scored labs across SOC, GRC and Pentest (brute-force
+- **Labs**: eight server-scored labs across SOC, GRC and Pentest (brute-force
   investigation, KQL detection authoring, suspicious-traffic triage, phishing
-  email triage, a GRC risk-register exercise, SQL-injection root-cause
-  analysis and CVSS v3.1 base scoring).
+  email triage, a GRC risk-register exercise, GRC control mapping and audit
+  evidence, SQL-injection root-cause analysis and CVSS v3.1 base scoring).
 - **Assessments**: ~193 bilingual questions feeding 26 module quizzes and a
   final exam for each of the three paths (random draw, server-side scoring).
   Every final exam draws across every published module in its path plus a bank

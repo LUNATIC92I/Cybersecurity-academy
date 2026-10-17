@@ -1,0 +1,9 @@
+control_id,control,framework_ref,control_type,status,evidence,last_tested
+C-01,Access reviews performed quarterly,ISO 27001 A.5.18,detective,operating,"Signed access-review records for Q1-Q3",2026-09-30
+C-02,Multi-factor authentication on remote access,ISO 27001 A.8.5,preventive,operating,"IdP policy export; sample of enrolled users",2026-08-15
+C-03,Encryption of laptops at rest,ISO 27001 A.8.24,preventive,operating,"MDM encryption compliance report",2026-09-01
+C-04,Backups taken and restore-tested,ISO 27001 A.8.13,corrective,design_only,"Backup policy document; no restore test on record",
+C-05,Security awareness training annually,ISO 27001 A.6.3,preventive,operating,"LMS completion report (96%)",2026-07-20
+C-06,Logging and monitoring of key systems,ISO 27001 A.8.15,detective,operating,"SIEM onboarding list; sample alerts",2026-09-28
+C-07,Change management approvals,ISO 27001 A.8.32,preventive,not_implemented,"",
+C-08,Supplier security assessed before onboarding,ISO 27001 A.5.19,preventive,operating,"Completed due-diligence questionnaires",2026-06-10
