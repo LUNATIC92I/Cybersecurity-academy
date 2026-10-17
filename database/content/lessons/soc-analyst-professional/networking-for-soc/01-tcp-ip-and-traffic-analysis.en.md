@@ -63,6 +63,7 @@ IPv6 addresses have 128 bits, written in hexadecimal groups (`2001:db8:85a3::8a2
 
 **TCP** is connection-oriented and reliable. It establishes a session with the **three-way handshake**:
 
+:::diagram TCP connection: the three-way handshake, data, and teardown
 ```text
 Client 10.0.5.20:51544                      Server 203.0.113.10:443
         │ ── SYN (seq=x) ───────────────────────► │
@@ -73,6 +74,7 @@ Client 10.0.5.20:51544                      Server 203.0.113.10:443
         │ ◄──────────────────────────────── FIN/ACK │
         │ ── ACK ─────────────────────────────────► │
 ```
+:::
 
 TCP flags you must recognise:
 

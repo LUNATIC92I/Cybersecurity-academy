@@ -38,6 +38,7 @@ La plus grande valeur pratique du CSF est la communication. « Notre fonction D�
 
 Le CSF 2.0 organise tout sous six **Fonctions** de premier niveau. La version 1.1 en comptait cinq ; la version 2.0 a ajouté **Gouverner** et l'a placée au centre.
 
+:::diagram NIST CSF 2.0 : Gouverner englobe les cinq fonctions principales
 ```text
                  ┌─────────────────────────┐
                  │        GOUVERNER        │
@@ -52,6 +53,7 @@ IDENTIFIER  PROTÉGER   DÉTECTER    RÉPONDRE    RÉTABLIR
 savoir ce   le         trouver les agir sur    rétablir
 qu'on a     sauvegarder problèmes  les incid.  les activités
 ```
+:::
 
 | Fonction | Question centrale | Exemples de résultats |
 |---|---|---|
@@ -96,6 +98,7 @@ Un **profil** est la façon dont vous appliquez le Noyau à *votre* organisation
 
 L'écart entre les deux est une **analyse d'écart**, et les écarts priorisés deviennent votre feuille de route d'amélioration :
 
+:::diagram Du profil actuel au profil cible via une feuille de route priorisée
 ```text
   PROFIL ACTUEL        ──analyse d'écart──►      PROFIL CIBLE
   où nous en sommes                              où nous devons être
@@ -103,6 +106,7 @@ L'écart entre les deux est une **analyse d'écart**, et les écarts priorisés 
          └──────────► feuille de route priorisée ◄──────┘
              (classée par risque + appétence + coût)
 ```
+:::
 
 Point crucial : vous ne visez **pas** le maximum partout. Le profil cible est façonné par le risque : un petit détaillant peut viser un Protéger et un Rétablir solides tout en acceptant une maturité modeste en Détecter, parce que cela correspond à son appétence au risque et à son budget. C'est exactement là que le registre des risques du module précédent intervient — il indique *quels* écarts comptent le plus.
 
