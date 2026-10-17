@@ -158,10 +158,10 @@ references. At the time of writing, **32 lessons** are published:
   **in development**; hands-on offensive techniques are taught only for
   authorised, isolated use.
 - **Labs**: five server-scored labs across SOC, GRC and Pentest.
-- **Assessments**: ~177 bilingual questions feeding 25 module quizzes and a
+- **Assessments**: ~183 bilingual questions feeding 25 module quizzes and a
   final exam for each of the three paths (random draw, server-side scoring).
-  The SOC final exam draws across all ten modules plus a bank of cross-cutting
-  investigation scenarios.
+  The SOC and GRC final exams draw across every module plus a bank of
+  cross-cutting scenario questions.
 
 Modules not yet written are shown as **in development** in the syllabus — the
 platform never pretends a module is complete when it is not. New courses,
