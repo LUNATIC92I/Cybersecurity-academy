@@ -161,7 +161,7 @@ references. At the time of writing, **32 lessons** are published:
   investigation, KQL detection authoring, suspicious-traffic triage, phishing
   email triage, a GRC risk-register exercise, SQL-injection root-cause
   analysis and CVSS v3.1 base scoring).
-- **Assessments**: ~189 bilingual questions feeding 26 module quizzes and a
+- **Assessments**: ~193 bilingual questions feeding 26 module quizzes and a
   final exam for each of the three paths (random draw, server-side scoring).
   Every final exam draws across every published module in its path plus a bank
   of cross-cutting scenario questions.
