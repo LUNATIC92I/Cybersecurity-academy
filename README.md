@@ -135,7 +135,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the design rationale.
 The curriculum is published progressively and honestly. Every published lesson
 is fully bilingual (English and French), with objectives, worked examples,
 scenarios, a knowledge check, an exercise with a model answer, an assignment and
-references. At the time of writing, **34 lessons** are published:
+references. At the time of writing, **35 lessons** are published:
 
 - **SOC Analysis path — complete.** All 10 modules are published: cybersecurity
   foundations, networking (incl. DNS/HTTP/proxy log analysis), operating-system
@@ -149,29 +149,31 @@ references. At the time of writing, **34 lessons** are published:
   controls and auditing, privacy and data protection, business continuity,
   third-party risk, GRC tools and documentation, and a capstone project. Each
   module has a module quiz, and the final exam draws across every module.
-- **Penetration Testing path — in progress.** 9 of 10 modules published, in a
+- **Penetration Testing path — complete.** All 10 modules are published, in a
   conceptual, defensive framing: ethics/authorisation and rules of engagement,
-  Linux and technical foundations, passive reconnaissance and OSINT,
-  vulnerability assessment and CVSS, web application security, reporting and
-  remediation, Active Directory security and attack paths, exploitation
-  fundamentals (exploit classes and the mitigation stack), and privilege
-  escalation and post-exploitation (escalation classes, assume-breach
-  hardening and SOC detection) — all taught defensively, with no payloads or
-  tooling. The remaining module (network enumeration) is **in development**;
-  hands-on offensive techniques are taught only for authorised, isolated use.
+  Linux and technical foundations, passive reconnaissance and OSINT, network
+  enumeration and attack surface management, vulnerability assessment and CVSS,
+  web application security, Active Directory security and attack paths,
+  exploitation fundamentals (exploit classes and the mitigation stack),
+  privilege escalation and post-exploitation (escalation classes,
+  assume-breach hardening and SOC detection), and reporting and remediation —
+  all taught defensively, with no payloads or tooling; hands-on offensive
+  techniques are reserved for authorised, isolated use. Every module has a
+  module quiz, and the final exam draws across every module.
 - **Labs**: eight server-scored labs across SOC, GRC and Pentest (brute-force
   investigation, KQL detection authoring, suspicious-traffic triage, phishing
   email triage, a GRC risk-register exercise, GRC control mapping and audit
   evidence, SQL-injection root-cause analysis and CVSS v3.1 base scoring).
-- **Assessments**: ~205 bilingual questions feeding 28 module quizzes and a
+- **Assessments**: ~211 bilingual questions feeding 29 module quizzes and a
   final exam for each of the three paths (random draw, server-side scoring).
   Every final exam draws across every published module in its path plus a bank
   of cross-cutting scenario questions.
 
-Modules not yet written are shown as **in development** in the syllabus — the
-platform never pretends a module is complete when it is not. New courses,
-lessons, labs and questions are added through the admin area or as versioned
-content files under `database/content/`, then seeded.
+All three paths are now fully published. The platform still shows any
+not-yet-written module as **in development** in the syllabus — it never
+pretends a module is complete when it is not — and new courses, lessons, labs
+and questions are added through the admin area or as versioned content files
+under `database/content/`, then seeded.
 
 ## What is *not* configured out of the box
 
