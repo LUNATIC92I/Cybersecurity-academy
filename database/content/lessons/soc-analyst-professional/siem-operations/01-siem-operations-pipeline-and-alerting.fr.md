@@ -40,6 +40,7 @@ Sa valeur est la **centralisation et la corrélation** : la preuve survit même 
 
 Faire entrer les données dans le SIEM est un pipeline, et chaque étape est un endroit où les choses réussissent ou échouent discrètement :
 
+:::diagram Le pipeline de journaux du SIEM, de la source à l'alerte
 ```text
  SOURCES ─► COLLECTE ─► ANALYSER & NORMALISER ─► ENRICHIR ─► STOCKER/INDEXER ─► DÉTECTER ─► ALERTER
  (postes,    (agents,    (champs extraits,        (geoIP,     (interrogeable)   (règles)    (vers le tri)
@@ -47,6 +48,7 @@ Faire entrer les données dans le SIEM est un pipeline, et chaque étape est un 
   pare-feu,  syslog,      schéma commun)           intel,
   cloud, IdP) API)                                 infos actifs)
 ```
+:::
 
 - **Sources** — les journaux des leçons précédentes et davantage : postes et EDR, serveurs (Windows/Linux), pare-feu et proxies, plateformes cloud, fournisseurs d'identité, applications.
 - **Collecte** — agents sur les hôtes, transfert syslog (le point rsyslog de la leçon journaux Linux), ou récupérations par API depuis le cloud/SaaS. Une collecte fiable est le socle ; une source qui cesse d'émettre est un angle mort.
@@ -59,11 +61,13 @@ Faire entrer les données dans le SIEM est un pipeline, et chaque étape est un 
 
 Les journaux bruts sont un fouillis de formats : un événement Windows, une ligne `auth.log` Linux et un enregistrement de pare-feu expriment tous « une connexion depuis une IP » de façon totalement différente. L'**analyse (parsing)** extrait les champs de chaque format ; la **normalisation** les mappe vers un **schéma commun** afin que le même concept ait le même nom de champ partout.
 
+:::diagram Normaliser trois formats de journaux vers un schéma commun
 ```text
  Windows 4624  ── Account_Name, Source_Network_Address ──┐
  auth.log Linux ── user, rhost ────────────────────────► │  normaliser vers :
  Journal pare-feu ── src_user, src_ip ──────────────────┘   user, src_ip, action, host, time
 ```
+:::
 
 Pourquoi c'est important : avec un schéma commun, **une seule requête trouve un comportement sur toutes les sources** — « montre les connexions réussies depuis cette IP sur Windows, Linux et le VPN » est une recherche unique, non trois. Sans normalisation, chaque source exige sa propre requête et la corrélation est quasi impossible. Un bon schéma (beaucoup de SOC en adoptent un publié) est ce qui rend les règles de la leçon de détection KQL portables et les pivots inter-sources de la leçon de tri rapides. Des **horodatages cohérents dans un seul fuseau (UTC)** en font partie — les événements de sources différentes doivent s'aligner sur une seule chronologie.
 
