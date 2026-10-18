@@ -226,6 +226,13 @@ return [
     'pdf.learning_path' => 'Parcours : :path',
     'pdf.issued_on' => 'Délivré le :date',
     'pdf.verify_at' => 'Vérification :',
+    'pdf.verified_seal' => 'Vérifié',
+    'pdf.authenticated' => 'Authentifié numériquement',
+    'pdf.detail_lessons' => 'Leçons',
+    'pdf.detail_labs' => 'Labs réussis',
+    'pdf.detail_score' => 'Score d\'examen',
+    'pdf.signatory_label' => 'Signataire autorisé',
+    'pdf.credential_label' => 'Numéro de certificat',
 
     'dashboard.title' => 'Tableau de bord',
     'dashboard.navigation' => 'Navigation de l\'apprenant',

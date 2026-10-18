@@ -232,6 +232,13 @@ return [
     'pdf.learning_path' => 'Learning path: :path',
     'pdf.issued_on' => 'Issued on :date',
     'pdf.verify_at' => 'Verify at',
+    'pdf.verified_seal' => 'Verified',
+    'pdf.authenticated' => 'Digitally authenticated',
+    'pdf.detail_lessons' => 'Lessons',
+    'pdf.detail_labs' => 'Labs passed',
+    'pdf.detail_score' => 'Exam score',
+    'pdf.signatory_label' => 'Authorised signatory',
+    'pdf.credential_label' => 'Credential number',
 
     // Dashboard
     'dashboard.title' => 'Dashboard',

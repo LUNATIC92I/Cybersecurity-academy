@@ -100,6 +100,7 @@ No single person should be able to complete a sensitive action alone. The person
 
 Assume any single control can fail, and layer independent controls so one failure is not catastrophic:
 
+:::diagram Defence in depth: independent layers between the internet and the data
 ```text
  Internet
     │
@@ -115,6 +116,7 @@ Assume any single control can fail, and layer independent controls so one failur
     │
  [ Backups ]  ← restores availability if all else fails
 ```
+:::
 
 For a SOC analyst, defence in depth explains why **an alert from one layer is a reason to check the others.** If EDR blocked a payload, did the email gateway miss it? Did the user also enter credentials on a phishing page?
 

@@ -39,6 +39,7 @@ Its value is **centralisation and correlation**: evidence survives even if a sou
 
 Getting data into the SIEM is a pipeline, and each stage is where things succeed or quietly fail:
 
+:::diagram The SIEM log pipeline, source to alert
 ```text
  SOURCES ─► COLLECTION ─► PARSE & NORMALISE ─► ENRICH ─► STORE/INDEX ─► DETECT ─► ALERT
  (endpoints,  (agents,      (fields extracted,  (geoIP,    (searchable)  (rules)   (to triage)
@@ -46,6 +47,7 @@ Getting data into the SIEM is a pipeline, and each stage is where things succeed
   firewalls,  syslog,        common schema)      intel,
   cloud, IdP)  APIs)                             asset info)
 ```
+:::
 
 - **Sources** — the logs from earlier lessons and more: endpoints and EDR, servers (Windows/Linux), firewalls and proxies, cloud platforms, identity providers, applications.
 - **Collection** — agents on hosts, syslog forwarding (the rsyslog point from the Linux-logs lesson), or API pulls from cloud/SaaS. Reliable collection is the foundation; a source that stops sending is a blind spot.
@@ -58,11 +60,13 @@ Getting data into the SIEM is a pipeline, and each stage is where things succeed
 
 Raw logs are a mess of formats: a Windows event, a Linux `auth.log` line and a firewall record all express "a login from an IP" completely differently. **Parsing** extracts the fields from each format; **normalisation** maps them to a **common schema** so the same concept has the same field name everywhere.
 
+:::diagram Normalising three log formats to one common schema
 ```text
  Windows 4624  ── Account_Name, Source_Network_Address ──┐
  Linux auth.log ── user, rhost ────────────────────────► │  normalise to:
  Firewall log  ── src_user, src_ip ─────────────────────┘   user, src_ip, action, host, time
 ```
+:::
 
 Why it matters: with a common schema, **one query finds a behaviour across every source** — "show successful logins from this IP across Windows, Linux and the VPN" is a single search, not three. Without normalisation, each source needs its own query and correlation is nearly impossible. A good schema (many SOCs adopt a published one) is what makes the KQL detection lesson's rules portable and the cross-source pivots from the triage lesson fast. Consistent **timestamps in a single timezone (UTC)** are part of this — events from different sources must line up on one timeline.
 

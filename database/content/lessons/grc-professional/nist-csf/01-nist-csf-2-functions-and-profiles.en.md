@@ -37,6 +37,7 @@ CSF's biggest practical value is communication. "Our Detect function is weak, Ti
 
 CSF 2.0 organises everything under six top-level **Functions**. Version 1.1 had five; version 2.0 added **Govern** and placed it at the centre.
 
+:::diagram NIST CSF 2.0: Govern wraps the five core functions
 ```text
                  ┌─────────────────────────┐
                  │         GOVERN          │
@@ -50,6 +51,7 @@ IDENTIFY   PROTECT     DETECT     RESPOND     RECOVER
 know what  safeguard   find       act on      restore
 you have   it          problems   incidents   operations
 ```
+:::
 
 | Function | Core question | Examples of outcomes |
 |---|---|---|
@@ -94,6 +96,7 @@ A **Profile** is how you apply the Core to *your* organisation. You create two:
 
 The difference between them is a **gap analysis**, and the prioritised gaps become your improvement roadmap:
 
+:::diagram From current to target profile via a prioritised roadmap
 ```text
   CURRENT PROFILE      ──gap analysis──►      TARGET PROFILE
   where we are now                            where we need to be
@@ -101,6 +104,7 @@ The difference between them is a **gap analysis**, and the prioritised gaps beco
          └──────────► prioritised roadmap ◄──────────┘
              (ranked by risk + appetite + cost)
 ```
+:::
 
 Crucially, you do **not** aim for the maximum on everything. The Target Profile is shaped by risk: a small retailer may target strong Protect and Recover but accept modest Detect maturity, because that matches its risk appetite and budget. This is exactly where the risk register from the previous module feeds in — it tells you *which* gaps matter most.
 

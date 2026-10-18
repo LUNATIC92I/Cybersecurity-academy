@@ -99,6 +99,7 @@ Aucune personne ne doit pouvoir réaliser seule une action sensible. Celui qui d
 
 Partez du principe que toute mesure isolée peut échouer, et superposez des mesures indépendantes afin qu'une défaillance ne soit pas catastrophique :
 
+:::diagram Défense en profondeur : des couches indépendantes entre Internet et les données
 ```text
  Internet
     │
@@ -114,6 +115,7 @@ Partez du principe que toute mesure isolée peut échouer, et superposez des mes
     │
  [ Sauvegardes ]  ← rétablit la disponibilité si tout le reste échoue
 ```
+:::
 
 Pour un analyste SOC, la défense en profondeur explique pourquoi **une alerte provenant d'une couche est une raison de vérifier les autres.** Si l'EDR a bloqué une charge malveillante, la passerelle de messagerie l'a-t-elle laissée passer ? L'utilisateur a-t-il aussi saisi ses identifiants sur une page d'hameçonnage ?
 

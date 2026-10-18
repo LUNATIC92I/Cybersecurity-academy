@@ -230,6 +230,15 @@ final class CertificateService
         $options->setIsPhpEnabled(false);
         $options->setDefaultFont('DejaVu Sans');
         $options->setChroot([base_path('resources/certificates')]);
+        // Writable cache so custom @font-face brand fonts can be registered.
+        $fontCache = base_path('storage/cache/dompdf-fonts');
+        if (!is_dir($fontCache)) {
+            @mkdir($fontCache, 0775, true);
+        }
+        if (is_dir($fontCache) && is_writable($fontCache)) {
+            $options->setFontDir($fontCache);
+            $options->setFontCache($fontCache);
+        }
         $dompdf = new Dompdf($options);
         $dompdf->loadHtml($html, 'UTF-8');
         $dompdf->setPaper('A4', 'landscape');
