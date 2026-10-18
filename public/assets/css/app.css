@@ -756,12 +756,19 @@ details.content-block[open] summary { margin-bottom: 0.6rem; }
 .js .hero__copy > .reveal:nth-child(5) { transition-delay: 0.36s; }
 .js .hero__visual.reveal { transition-delay: 0.18s; }
 
-/* Staggered entrance for card grids (path, course/lab, steps, roadmap) */
-.js .grid > .reveal:nth-child(2), .js .roadmap__panel > .reveal:nth-child(2) { transition-delay: 0.09s; }
-.js .grid > .reveal:nth-child(3), .js .roadmap__panel > .reveal:nth-child(3) { transition-delay: 0.18s; }
-.js .grid > .reveal:nth-child(4), .js .roadmap__panel > .reveal:nth-child(4) { transition-delay: 0.27s; }
-.js .grid > .reveal:nth-child(5), .js .roadmap__panel > .reveal:nth-child(5) { transition-delay: 0.36s; }
-.js .grid > .reveal:nth-child(6), .js .roadmap__panel > .reveal:nth-child(6) { transition-delay: 0.45s; }
+/* Staggered entrance for card grids and roadmaps.
+   Applies to the homepage and to the catalog and learning-path grids/roadmaps
+   (which can hold many cards or 10 modules); the delay is capped so later
+   items never wait too long. */
+.js .grid > .reveal:nth-child(2), .js .roadmap__panel > .reveal:nth-child(2) { transition-delay: 0.06s; }
+.js .grid > .reveal:nth-child(3), .js .roadmap__panel > .reveal:nth-child(3) { transition-delay: 0.12s; }
+.js .grid > .reveal:nth-child(4), .js .roadmap__panel > .reveal:nth-child(4) { transition-delay: 0.18s; }
+.js .grid > .reveal:nth-child(5), .js .roadmap__panel > .reveal:nth-child(5) { transition-delay: 0.24s; }
+.js .grid > .reveal:nth-child(6), .js .roadmap__panel > .reveal:nth-child(6) { transition-delay: 0.30s; }
+.js .grid > .reveal:nth-child(7), .js .roadmap__panel > .reveal:nth-child(7) { transition-delay: 0.36s; }
+.js .grid > .reveal:nth-child(8), .js .roadmap__panel > .reveal:nth-child(8) { transition-delay: 0.42s; }
+.js .grid > .reveal:nth-child(9), .js .roadmap__panel > .reveal:nth-child(9) { transition-delay: 0.48s; }
+.js .grid > .reveal:nth-child(n+10), .js .roadmap__panel > .reveal:nth-child(n+10) { transition-delay: 0.54s; }
 
 /* Accent top line draws in when a card reveals */
 .js .course-card.reveal::before, .js .lab-card.reveal::before, .js .path-card.reveal::before { transform: scaleX(0); transform-origin: left; transition: transform 0.6s var(--ease) 0.15s, opacity 0.3s; }
