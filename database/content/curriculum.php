@@ -12,7 +12,7 @@ return ['paths' => [
 // SOC ANALYST
 // =====================================================================
 [
-    'code' => 'SOC', 'slug' => 'soc-analyst', 'accent' => 'cyan', 'icon' => 'radar',
+    'code' => 'SOC', 'slug' => 'soc-analyst', 'accent' => 'blue', 'icon' => 'radar',
     'en' => [
         'title' => 'SOC Analyst',
         'tagline' => 'Detect, investigate and respond to threats in a modern Security Operations Center.',
@@ -236,7 +236,7 @@ return ['paths' => [
 // GRC
 // =====================================================================
 [
-    'code' => 'GRC', 'slug' => 'grc-professional', 'accent' => 'blue', 'icon' => 'scale',
+    'code' => 'GRC', 'slug' => 'grc-professional', 'accent' => 'cyan', 'icon' => 'scale',
     'en' => [
         'title' => 'GRC Professional',
         'tagline' => 'Govern security, manage risk and demonstrate compliance with confidence.',
