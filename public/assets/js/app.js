@@ -16,8 +16,8 @@
   function applyTheme(theme) {
     doc.setAttribute('data-theme', theme);
   }
+  /* Dark Premium is the brand default on first visit; an explicit choice (toggle) persists and wins. */
   var initial = storedTheme();
-  if (!initial && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) { initial = 'light'; }
   applyTheme(initial === 'light' ? 'light' : 'dark');
 
   function toast(message) {
