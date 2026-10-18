@@ -58,7 +58,7 @@ return [
     'footer.share' => 'Share this page',
     'footer.follow' => 'Follow us',
     'footer.rights' => 'All rights reserved.',
-    'footer.certificate_notice' => 'Cybersecurity-Academy certificates document achievement within this platform. They are not accredited, government-recognised or equivalent to external professional certifications.',
+    'footer.certificate_notice' => 'This certificate attests to successful completion within Cybersecurity-Academy and recognises the skills demonstrated on the platform. Its authenticity can be verified online via its unique number and QR code. It is a certificate of achievement issued by the platform, not an official accreditation or an external professional certification.',
 
     // Common
     'common.all' => 'All',

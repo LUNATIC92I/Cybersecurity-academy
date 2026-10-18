@@ -55,7 +55,7 @@ return [
     'footer.share' => 'Partager cette page',
     'footer.follow' => 'Nous suivre',
     'footer.rights' => 'Tous droits réservés.',
-    'footer.certificate_notice' => 'Les certificats Cybersecurity-Academy attestent d\'une réussite au sein de cette plateforme. Ils ne sont ni accrédités, ni reconnus par l\'État, ni équivalents à des certifications professionnelles externes.',
+    'footer.certificate_notice' => 'Ce certificat atteste la réussite du parcours au sein de Cybersecurity-Academy et valorise les compétences démontrées sur la plateforme. Son authenticité est vérifiable en ligne grâce à son numéro unique et à son QR code. Il s\'agit d\'un certificat de réussite délivré par la plateforme, et non d\'une accréditation officielle ou d\'une certification professionnelle externe.',
 
     'common.all' => 'Tous',
     'common.and' => 'et',
